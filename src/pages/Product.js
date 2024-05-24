@@ -30,6 +30,7 @@ const ImageContainer = styled.div`
   flex: 1;
   width: 100%;
   height: 90vh;
+  border-radaius: 4px;
   
 `
 const Image = styled.img`
@@ -312,6 +313,7 @@ const Product = () => {
         '& .MuiDialog-paper': {
           width: '500px', 
           maxWidth: 'none',
+          borderRadius: "4px",
         },
       }}
       keepMounted
