@@ -88,7 +88,7 @@ const Image = styled.img`
 const InfoContainer = styled.div`
     position: absolute;
     top: 34%;
-    left: 24%;
+    left: 23%;
     transform: translate(-50%, -50%);
     text-align: center;
     color: #fff;
