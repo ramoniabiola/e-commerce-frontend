@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar'
 import Annoucement from '../components/Annoucement';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
-import { Add, HighlightOff, Remove, ShoppingCart } from '@mui/icons-material';
+import { Add, AddShoppingCartRounded, HighlightOff, Remove } from '@mui/icons-material';
 import { MobileDevice } from '../reponsive';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRemoveProductFromCart } from '../redux/apiCalls';
@@ -288,7 +288,7 @@ const Cart = () => {
           <Info>
             {(!user || !cart.products.length) ? (
               <EmptyCartContainer>
-                <ShoppingCart style={{ fontSize: 120, marginBottom: "10px", color: "#9ca3af" }} />
+                <AddShoppingCartRounded style={{ fontSize: 130, marginBottom: "10px", color: "#9ca3af" }} />
                 <Typography variant="h6" color="#9ca3af">No cart item available</Typography>
               </EmptyCartContainer>
             ) : (

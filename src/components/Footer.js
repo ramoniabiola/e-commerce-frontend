@@ -55,7 +55,7 @@ const SocialContainer = styled.div`
 const SocialIcon = styled.div`
     width: 40px;
     height: 40px;
-    border-radius: 50%;
+    border-radius: 28%;
     color: black;
     border: 2px solid;
     display: flex;
@@ -63,6 +63,7 @@ const SocialIcon = styled.div`
     justify-content: center;  
     cursor: pointer;
     margin-right: 20px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 `
 // CENTER ----------------------------------------------------------------------
 
