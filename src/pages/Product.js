@@ -320,9 +320,9 @@ const Product = () => {
       onClose={handleDialogClose}
       aria-describedby="alert-dialog-slide-description"
       >
-      <DialogTitle>{"Not Logged In"}</DialogTitle>
+      <DialogTitle  style={{color: "#64748b", fontSize: "18px"}}>{"Not Logged In?"}</DialogTitle>
       <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
+          <DialogContentText id="alert-dialog-slide-description" style={{color: "#1e293b"}}>
               {" You need to be logged in to add products to the cart. Please log in if you already have an account or register if you don't have one."}
           </DialogContentText>
       </DialogContent>
