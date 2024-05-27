@@ -12,7 +12,7 @@ const Container = styled.div`
     align-items: center;
     position: relative;
     overflow: hidden;
-    background-color: #f5f5f5;
+    background-color: white;
 `;
 
 const Title = styled.h1`
@@ -38,13 +38,13 @@ const CategoryWrapper = styled.div`
     margin-top: 20px;
     padding: 30px;
     border-radius: 12px;
-    background-color: #e5e5e5;
+    background-color: #fef2f2;
     max-width: 400px; /* Limiting width to prevent overflowing */
 
     &:hover {
         transform: scale(1.01);
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        background-color: #d4d4d4;
+        background-color: #fee2e2;
     }
 `;
 
@@ -61,7 +61,7 @@ const Desc = styled.p`
 
 const Button = styled(Link)`
     margin-top: 24px;
-    border: 3px solid #0c0a09;
+    border: 3px solid #450a0a;
     border-radius: 8px;
     padding: 14px 40px;
     background-color: transparent;
@@ -72,9 +72,9 @@ const Button = styled(Link)`
     color: #0a0a0a;
     
     &:hover {
-        color: #f5f5f5;
-        background-color: #0a0a0a;
-        border: 3px solid #f5f5f5;
+        color:  #fee2e2;
+        background-color: #450a0a;
+
     }
 
 `
