@@ -182,9 +182,9 @@ const Navbar = () => {
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
             >
-            <DialogTitle>{"EXIT CONFIRMATION"}</DialogTitle>
+            <DialogTitle style={{color: "#64748b", fontSize: "18px"}}>{"EXIT CONFIRMATION"}</DialogTitle>
             <DialogContent>
-                <DialogContentText id="alert-dialog-slide-description">
+                <DialogContentText id="alert-dialog-slide-description"  style={{color: "#1e293b"}}>
                     {"Are you sure you want to Log out?"}
                 </DialogContentText>
             </DialogContent>
