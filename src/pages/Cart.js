@@ -218,7 +218,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart);
-  const user = useSelector(state => state.user.currentUser); // Assuming you have a user slice in your state
+  const user = useSelector(state => state.user.currentUser); 
   const { removeProductFromCart, error, success, isLoading } = useRemoveProductFromCart();
   const [open, setOpen] = useState(false);
   const [selectedCartItem, setSelectedCartItem] = useState(null);
