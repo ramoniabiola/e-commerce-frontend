@@ -37,14 +37,14 @@ const CategoryWrapper = styled.div`
     margin: 12px;
     margin-top: 20px;
     padding: 30px;
-    border-radius: 12px;
-    background-color: #fef2f2;
+    border-radius: 8px;
+    background-color: #e5e7eb;
     max-width: 400px; /* Limiting width to prevent overflowing */
 
     &:hover {
         transform: scale(1.01);
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        background-color: #fee2e2;
+        background-color: #d1d5db;
     }
 `;
 
@@ -61,19 +61,19 @@ const Desc = styled.p`
 
 const Button = styled(Link)`
     margin-top: 24px;
-    border: 3px solid #450a0a;
-    border-radius: 8px;
+    border: 3px solid #030712;
+    border-radius: 6px;
     padding: 14px 40px;
     background-color: transparent;
     cursor: pointer;
     font-weight: 600;
     font-size: 20px;
     text-decoration: none;
-    color: #0a0a0a;
+    color: #030712;
     
     &:hover {
-        color:  #fee2e2;
-        background-color: #450a0a;
+        color: #d1d5db;
+        background-color: #030712;
 
     }
 
