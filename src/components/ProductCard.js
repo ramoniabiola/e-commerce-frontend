@@ -1,4 +1,4 @@
-import { Star, StarHalf, StarOutline } from '@mui/icons-material'
+import {  ShoppingCartOutlined, Star, StarHalf, StarOutline } from '@mui/icons-material'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -65,6 +65,9 @@ const Icons = styled.div`
 
 const Button = styled.button`
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px;
   background-color: #059669;
   color: #fff;
@@ -73,7 +76,7 @@ const Button = styled.button`
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   transition: background-color 0.3s;
 
   &:hover {
@@ -104,7 +107,7 @@ const ProductCard = ({ product }) => {
          <StarOutline />
         </Icons>
         <StyledLink to={`/product/${product._id}`}>
-          <Button >ADD TO CART</Button>
+          <Button ><ShoppingCartOutlined sx={{ fontSize: '22px', marginRight: "2.5px", color: "gold" }}  />ADD TO CART</Button>
         </StyledLink>  
       </Info>
     </Container>

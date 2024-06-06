@@ -16,7 +16,7 @@ const Title = styled.h1`
     padding: 20px;
     text-align: center;
     margin: 10px 0;
-    font-weight: 600;
+    font-weight: 500;
 `
 const Wrapper = styled.div`
     display: flex;
@@ -56,7 +56,7 @@ const SearchResults = () => {
         <Container>
             <Navbar />
             <Announcement />
-            <Title>Search Results for "{query}"</Title>
+            <Title>Search Results for <b>"{query}"</b></Title>
             <Wrapper>
                 {products.map((product) => (
                     <ProductCard key={product._id} product={product} />
