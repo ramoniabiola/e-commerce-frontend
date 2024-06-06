@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Badge } from '@mui/material';
 import { Search, ShoppingCartOutlined } from '@mui/icons-material'
 import { MobileDevice } from '../reponsive';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector} from "react-redux"
 import { useLogout } from '../redux/apiCalls';
 import Button from '@mui/material/Button';
@@ -91,7 +91,8 @@ const Input = styled.input`
     width: 100%;
     padding: 4px;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px;
+    font-weight: 500;
     border: none;
     outline: none;
     ${MobileDevice({ fontSize: "12px"})}  
@@ -144,6 +145,8 @@ const Navbar = () => {
     const isLoggedIn = useSelector((state) => state.user.currentUser)
     const { handleLogout } = useLogout();
     const [open, setOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
 
       
@@ -156,6 +159,25 @@ const Navbar = () => {
       setOpen(false);
     };
 
+
+
+    const handleSearchChange = (e) => {
+        setSearchQuery(e.target.value);
+    };
+
+
+    const handleSearch = () => {
+        if (searchQuery.trim()) {
+            navigate(`/search?query=${searchQuery}`);
+        }
+    };
+
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
 
 
     const handleClick = async () => {
@@ -199,8 +221,16 @@ const Navbar = () => {
             </Left>
             <Center>
                 <SearchContainer>
-                    <Input placeholder='Search products, brands'/>
-                    <Search style={{color: "gray", fontSize: 25, cursor: "pointer" }}/>
+                    <Input
+                     placeholder='Search products, brands'
+                     value={searchQuery}
+                     onChange={handleSearchChange}
+                     onKeyDown={handleKeyPress}
+                    />
+                    <Search
+                     style={{color: "gray", fontSize: 25, cursor: "pointer" }}
+                     onClick={handleSearch}
+                    />
                 </SearchContainer>
             </Center>
             <Right>

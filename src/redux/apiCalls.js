@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
  
 
-//// USER AUTHORIZATION AND AUTHENTICATION SECTION -------------------------------------------------------------------
+ //// USER AUTHORIZATION AND AUTHENTICATION SECTION -------------------------------------------------------------------
 
 //  "Login" CUSTOMIZED HOOK
 export const useLogin = () => {
@@ -41,7 +41,7 @@ export const useLogin = () => {
             setIsLoading(false);
             dispatch(loginFailure(error.response?.data?.error || error.message))
         }      
-    };
+     };
     
     return { login, error, isLoading };
 };
@@ -171,7 +171,6 @@ export const useAddProductToCart = () => {
                 // Extract only the newly added product
                 const newProduct = response.data.products[response.data.products.length - 1];
                 dispatch(addProductToCart({ product: newProduct }));
-                console.log("Response data:", newProduct); 
                 setError(null);
                 setSuccess(true);
                 setTimeout(() => setSuccess(false), 4000);

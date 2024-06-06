@@ -72,7 +72,7 @@ const Button = styled(Link)`
     color: #030712;
     
     &:hover {
-        color: #d1d5db;
+        color:   #d1d5db;
         background-color: #030712;
 
     }

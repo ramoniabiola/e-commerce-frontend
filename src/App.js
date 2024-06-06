@@ -6,6 +6,7 @@ import Cart from './pages/Cart';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import { useSelector } from 'react-redux';
+import SearchResults from './pages/SearchResults';
 
 
 const App = () => {
@@ -31,6 +32,10 @@ const App = () => {
             path="/cart"
             element={<Cart />}
           />
+          <Route 
+            path="/search"
+            element={<SearchResults />}
+          />         
           <Route 
             path="/register"
             element={<Register />}
