@@ -1,4 +1,5 @@
 import { Star, StarHalf, StarOutline } from '@mui/icons-material'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 
@@ -80,6 +81,11 @@ const Button = styled.button`
   }
 `
 
+const StyledLink = styled(Link)`
+  width: 100%;
+  text-decoration: none;
+`;
+
 
 const ProductCard = ({ product }) => {
   return (
@@ -97,7 +103,9 @@ const ProductCard = ({ product }) => {
          <StarHalf />
          <StarOutline />
         </Icons>
-        <Button>ADD TO CART</Button>
+        <StyledLink to={`/product/${product._id}`}>
+          <Button >ADD TO CART</Button>
+        </StyledLink>  
       </Info>
     </Container>
   )
