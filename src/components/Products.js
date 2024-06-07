@@ -3,7 +3,7 @@ import Product from './Product';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-const Container= styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -12,87 +12,89 @@ const Container= styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-
-`
-
+  margin-top: 28px;
+`;
 
 const Title = styled.h1`
-    font-size: 37px;
-    font-weight: 600;
-    color: black;
-    margin-top: 12px;
-    margin-bottom: 28px;
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  padding: 16px;
+  text-align: center;
+  width: 100%;
+
 `;
 
 const ProductContainer = styled.div`
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-`
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
+
 const Products = ({ cat, sort, filters }) => {
-  const [products, setProducts] = useState([])
-  const [filteredProducts, setFilteredProducts] = useState([])
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    const getProducts = async() => {
-      try{
+    const getProducts = async () => {
+      try {
         const res = await axios.get(
-          cat 
-          ? `http://localhost:5000/api/products?category=${cat}` 
-          : "http://localhost:5000/api/products"
+          cat
+            ? `http://localhost:5000/api/products?category=${cat}`
+            : "http://localhost:5000/api/products"
         );
-       setProducts(res.data);
-      } catch(err) {
+        setProducts(res.data);
+      } catch (err) {
         console.log(err);
       }
     };
     getProducts();
-  },[cat]);
-
+  }, [cat]);
 
   useEffect(() => {
     cat &&
       setFilteredProducts(
-        products.filter((item) => 
-         Object.entries(filters).every(([key,value]) => 
+        products.filter((item) =>
+          Object.entries(filters).every(([key, value]) =>
             item[key].includes(value)
           )
         )
-      )
-  },[products, cat, filters])
- 
+      );
+  }, [products, cat, filters]);
 
   useEffect(() => {
-    if(sort === "newest") {
-      setFilteredProducts(prev => 
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)   
+    if (sort === "newest") {
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.createdAt - b.createdAt)
       );
     } else if (sort === "asc") {
-      setFilteredProducts(prev => 
-        [...prev].sort((a, b) => a.price - b.price)   
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => a.price - b.price)
       );
     } else {
-      setFilteredProducts(prev => 
-        [...prev].sort((a, b) => b.price - a.price) 
-      );  
+      setFilteredProducts((prev) =>
+        [...prev].sort((a, b) => b.price - a.price)
+      );
     }
-   }, [sort])
-
+  }, [sort]);
 
   return (
     <Container>
       <Title>Popular Products</Title>
       <ProductContainer>
         {cat
-          ? filteredProducts.map(item => <Product item={item} key={item._id}/>)
+          ? filteredProducts.map((item) => (
+              <Product item={item} key={item._id} />
+            ))
           : products
-            .slice(0,10)
-            .map(item => <Product item={item} key={item._id}/>)
+            .slice(0, 10)
+            .map((item) => <Product item={item} key={item._id} />)
         }
       </ProductContainer>
     </Container>
-  )
-}
+  );
+};
 
 export default Products;

@@ -36,6 +36,7 @@ const Input = styled.input`
     border: none;
     outline: none;
     flex: 8;
+    font-size: 16px;
     padding-left: 10px;
 `
 const  Button = styled.button`

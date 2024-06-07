@@ -17,7 +17,7 @@ const Container = styled.div`
 
   
   &:hover {
-    transform: scale(1.025);
+    transform: scale(1.04);
   }
   
 `
@@ -45,15 +45,15 @@ const Info = styled.div`
 `
 
 const Title = styled.h1`
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 26px;
+  font-weight: 700;
   margin: 10px 0;
   color: #18181b;
 `
 const Price = styled.h2`
-  font-size: 24px;
-  color: #18181b;
-  font-weight: 600;
+  font-size: 22px;
+  color: #6b7280;
+  font-weight: 700;
 `
 const Icons = styled.div`
   display: flex;

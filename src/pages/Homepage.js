@@ -8,6 +8,7 @@ import Products from '../components/Products';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
 import Categories from '../components/Categories';
+import TopSellingList from '../components/TopSellingList';
 
 
 const Homepage = () => {
@@ -17,6 +18,7 @@ const Homepage = () => {
       <Navbar />
       <Slider />
       <Categories />
+      <TopSellingList />
       <Products />
       <Newsletter />
       <Footer />
