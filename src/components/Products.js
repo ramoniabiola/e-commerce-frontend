@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import Product from './Product';
 import { useState, useEffect } from 'react';
 import axios from "axios";
+import { PostAdd } from '@mui/icons-material';
+import { CircularProgress, Typography } from '@mui/material';
+
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +15,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-  margin-top: 28px;
+  margin-top: 8px;
 `;
 
 const Title = styled.h1`
@@ -33,25 +36,60 @@ const ProductContainer = styled.div`
   justify-content: space-between;
 `;
 
+const NoDataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+`
+
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+`
+
+
 const Products = ({ cat, sort, filters }) => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const getProducts = async () => {
+      setIsLoading(true);
+      setError(null)
+
       try {
-        const res = await axios.get(
+        const response = await axios.get(
           cat
             ? `http://localhost:5000/api/products?category=${cat}`
             : "http://localhost:5000/api/products"
         );
-        setProducts(res.data);
-      } catch (err) {
-        console.log(err);
+        if(response.status >= 200 && response.status < 300) {
+          setProducts(response.data);
+          setError(null);
+          setIsLoading(false);
+        } else {
+          // If the response status is not in the success range, handle the error
+          throw new Error(response.data.error);
+        }
+      } catch (error) {
+        setIsLoading(false)
+        setError("No data...")
       }
     };
+
     getProducts();
   }, [cat]);
+
+
 
   useEffect(() => {
     cat &&
@@ -63,6 +101,7 @@ const Products = ({ cat, sort, filters }) => {
         )
       );
   }, [products, cat, filters]);
+
 
   useEffect(() => {
     if (sort === "newest") {
@@ -80,6 +119,7 @@ const Products = ({ cat, sort, filters }) => {
     }
   }, [sort]);
 
+
   return (
     <Container>
       <Title>Popular Products</Title>
@@ -93,6 +133,18 @@ const Products = ({ cat, sort, filters }) => {
             .map((item) => <Product item={item} key={item._id} />)
         }
       </ProductContainer>
+      {error && (
+        <NoDataContainer>
+          <PostAdd style={{ fontSize: 100, marginBottom: "10px", color: "#9ca3af" }} />
+          <Typography variant="h5" color="#9ca3af">{error}</Typography>
+        </NoDataContainer>
+      )}
+      {isLoading && (
+        <LoadingContainer>
+          <CircularProgress  style={{ color: '#6b7280', marginBottom: "14px" }} size={40}  />
+          <Typography variant="h6" color="#9ca3af">Loading...</Typography>
+        </LoadingContainer>
+      )}
     </Container>
   );
 };

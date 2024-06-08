@@ -22,7 +22,7 @@ const Container = styled.div`
     justify-content: center;
     font-size: 16px;
     ${MobileDevice({ fontSize: "12px" })}
-    animation: ${gradientAnimation} 2s linear infinite alternate;
+    animation: ${gradientAnimation} 2.1s linear infinite alternate;
     background-size: 400% 400%;
     background-image: linear-gradient(to right,rgb(7 89 133), rgb(6 95 70), rgb(190 24 93));
 `;
