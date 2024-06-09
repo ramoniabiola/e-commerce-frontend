@@ -73,7 +73,6 @@ const SearchResults = () => {
                     setError(null);
                     setIsLoading(false);
                 } else {
-                  // If the response status is not in the success range, handle the error
                   throw new Error(response.data.error);
                 }
             } catch (error) {
@@ -83,7 +82,8 @@ const SearchResults = () => {
         };
 
         if (query) {
-            fetchProducts();
+            setProducts([]); // clear existing result before re-invoking the fetchproducts function if the search action has previously been invoked.
+            fetchProducts();     
         }
     }, [query]);
 

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Annoucement from '../components/Annoucement';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
-import { Add, Remove } from '@mui/icons-material';
+import { Add, Remove, PostAdd } from '@mui/icons-material';
 import { MobileDevice } from '../reponsive';
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -11,8 +11,10 @@ import { publicRequest } from '../requestMethod'
 import { useSelector, useDispatch } from "react-redux";
 import { useAddProductToCart } from '../redux/apiCalls';
 import { Alert, CircularProgress, Dialog, DialogActions, DialogContent, 
-  DialogContentText, Slide, DialogTitle, Button as MuiButton 
+  DialogContentText, Slide, DialogTitle, Button as MuiButton, Typography 
 } from '@mui/material';
+
+
 
 
 
@@ -24,6 +26,18 @@ const Container = styled.div`
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
+  ${({ $isProgressing, $isError }) =>
+    ($isProgressing  || $isError) 
+    ? 
+      `
+        justify-content: center;
+        align-items: center;
+      `
+    : `
+        justify-content: none;
+        align-items: none;  
+      `
+  }
   ${MobileDevice({ flexDirection: "column", padding: "10px" })}
 `
 const ImageContainer = styled.div`
@@ -136,6 +150,23 @@ const Button = styled.button`
   }
 
 `
+const NoDataContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+`
+
+const LoadingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+  text-align: center;
+`
 
 
 const IsLoadingContainer = styled.div`
@@ -181,6 +212,8 @@ const Product = () => {
   const { productToCart, error, success, isLoading } = useAddProductToCart();
   const userId = useSelector((state) => state.user.currentUser?._id);
   const [open, setOpen] = useState(false);
+  const [findError, setFindError] = useState(null);
+  const [findIsLoading, setFindIsLoading] = useState(false);
 
 
 
@@ -196,19 +229,32 @@ const Product = () => {
 
   useEffect(() => {
     const getProduct = async() => {
+      setFindIsLoading(true);
+      setFindError(null)
+
+
       try{
-        const res = await publicRequest.get("/products/find/"+id)
-        setProduct(res.data);
-      } catch (err)  {
-        console.log(err)
+        const response = await publicRequest.get("/products/find/"+id);
+        if(response.status >= 200 && response.status < 300) {
+          setProduct(response.data);
+          setFindError(null);
+          setFindIsLoading(false);
+        } else {
+          // If the response status is not in the success range, handle the error
+          throw new Error(response.data.error);
+        }
+      }catch(error){
+        setFindIsLoading(false)
+        setFindError("Product not found...")
       }
     }
+
     getProduct();
   }, [id]);
 
 
 
-//  QUANTITY CHANGE BUTTON -----------------------
+  // QUANTITY CHANGE BUTTON -----------------------
   const handleQuantity = (type) => {
     if (type === "add") {
        setQuantity(quantity + 1)
@@ -217,7 +263,7 @@ const Product = () => {
     }
   }
 
-  //HANDLE PRODUCT TO CART ACTION 
+  // HANDLE PRODUCT TO CART ACTION 
   const handleClick = async () => {
     if (!userId) {
       handleDialogOpen();
@@ -248,99 +294,109 @@ const Product = () => {
 
 
   return (
-  <Container>
-    {isLoading && (
-      <IsLoadingContainer>
-        <IsLoadingCircle>
-          <CircularProgress />
-        </IsLoadingCircle>
-      </IsLoadingContainer>
-    )}
-    <Navbar />
-    <Annoucement />
-    <Wrapper>
-      <ImageContainer>
-        <Image src={product.img} />
-      </ImageContainer>
-      <InfoContainer>
-        <Title>{product.title}</Title>
-        <Desc>{product.desc}</Desc>
-        <Price>₦{product.price}</Price>
-        <FilterContainer>
-          <Filter>
-            <FilterTitle>Color </FilterTitle>
-            {product.color?.map((c) =>
-              <FilterColor color={c} key={c} value={c} onClick={() => setColor(c)}/>
-            )}         
-          </Filter>
-          <Filter>
-            <FilterTitle>Size</FilterTitle>
-              <FilterSize  value={size} onChange={(e) => setSize(e.target.value)}>
-                {product.size?.map((s) =>
-                  <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                )}
-              </FilterSize>
-          </Filter>
-        </FilterContainer>
-        <AddContainer>
-          <AmountContainer>
-            <Add onClick={() => handleQuantity("add")} />
-            <Amount>{quantity}</Amount>
-            <Remove onClick={() => handleQuantity("sub")} />
-          </AmountContainer>
-          <Button onClick={handleClick}>ADD TO CART</Button>
-        </AddContainer>
-      </InfoContainer>  
-    </Wrapper>
-    <Newsletter />
-    <Footer />
-    {success && (
-      <Alert severity="success" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-        Add to cart succesfully...
-      </Alert>
-    )}
-    {error && (
-      <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-        {error}
-      </Alert>
-    )}
-
-
-    <Dialog
-      open={open}
-      TransitionComponent={Transition}
-      sx={{
-        '& .MuiDialog-paper': {
-          width: '500px', 
-          maxWidth: 'none',
-          borderRadius: "4px",
-        },
-      }}
-      keepMounted
-      onClose={handleDialogClose}
-      aria-describedby="alert-dialog-slide-description"
-      >
-      <DialogTitle  style={{color: "#64748b", fontSize: "18px"}}>{"Not Logged In?"}</DialogTitle>
-      <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description" style={{color: "#1e293b"}}>
-              {" You need to be logged in to add products to the cart. Please log in if you already have an account or register if you don't have one."}
-          </DialogContentText>
-      </DialogContent>
-      <DialogActions>
-        <MuiButton onClick={() => setOpen(false)} color="secondary">
-          CANCEL
-        </MuiButton>
-        <MuiButton href="/login" color="primary">
-          LOGIN
-        </MuiButton>
-        <MuiButton href="/register"color="primary" autoFocus>
-          REGISTER
-        </MuiButton>
-      </DialogActions>
-    </Dialog>
-          
-          
-  </Container>
+    <Container>
+      {isLoading && (
+        <IsLoadingContainer>
+          <IsLoadingCircle>
+            <CircularProgress />
+          </IsLoadingCircle>
+        </IsLoadingContainer>
+      )}
+      <Navbar />
+      <Annoucement />
+      <Wrapper $isProgressing={findIsLoading ? "true" : undefined} $isError={findError ? "true" : undefined}>
+        {findIsLoading ? (
+          <LoadingContainer>
+            <CircularProgress  style={{ color: '#6b7280', marginBottom: "14px" }} size={40}  />
+            <Typography variant="h6" color="#9ca3af" style={{  marginLeft: "8px" }} >Loading...</Typography>
+          </LoadingContainer>
+          ) : findError ? (
+            <NoDataContainer>
+              <PostAdd style={{ fontSize: 100, marginBottom: "10px", color: "#9ca3af" }} />
+              <Typography variant="h5" color="#9ca3af">{findError}</Typography>
+            </NoDataContainer>
+          ) : (
+          <>
+            <ImageContainer>
+              <Image src={product.img} />
+            </ImageContainer>
+            <InfoContainer>
+              <Title>{product.title}</Title>
+              <Desc>{product.desc}</Desc>
+              <Price>₦{product.price}</Price>
+              <FilterContainer>
+                <Filter>
+                  <FilterTitle>Color </FilterTitle>
+                  {product.color?.map((c) =>
+                    <FilterColor color={c} key={c} value={c} onClick={() => setColor(c)}/>
+                  )}         
+                </Filter>
+                <Filter>
+                  <FilterTitle>Size</FilterTitle>
+                    <FilterSize  value={size} onChange={(e) => setSize(e.target.value)}>
+                      {product.size?.map((s) =>
+                        <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                      )}
+                    </FilterSize>
+                </Filter>
+              </FilterContainer>
+              <AddContainer>
+                <AmountContainer>
+                  <Add onClick={() => handleQuantity("add")} />
+                  <Amount>{quantity}</Amount>
+                  <Remove onClick={() => handleQuantity("sub")} />
+                </AmountContainer>
+                <Button onClick={handleClick}>ADD TO CART</Button>
+              </AddContainer>
+            </InfoContainer>
+          </> 
+        )}
+      </Wrapper>
+      <Newsletter />
+      <Footer />
+      {success && (
+        <Alert severity="success" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          Add to cart succesfully...
+        </Alert>
+      )}
+      {error && (
+        <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          {error}
+        </Alert>
+      )}
+      <Dialog
+        open={open}
+        TransitionComponent={Transition}
+        sx={{
+          '& .MuiDialog-paper': {
+            width: '500px', 
+            maxWidth: 'none',
+            borderRadius: "4px",
+          },
+        }}
+        keepMounted
+        onClose={handleDialogClose}
+        aria-describedby="alert-dialog-slide-description"
+        >
+        <DialogTitle  style={{color: "#64748b", fontSize: "18px"}}>{"Not Logged In?"}</DialogTitle>
+        <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description" style={{color: "#1e293b"}}>
+                {" You need to be logged in to add products to the cart. Please log in if you already have an account or register if you don't have one."}
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <MuiButton onClick={() => setOpen(false)} color="secondary">
+            CANCEL
+          </MuiButton>
+          <MuiButton href="/login" color="primary">
+            LOGIN
+          </MuiButton>
+          <MuiButton href="/register"color="primary" autoFocus>
+            REGISTER
+          </MuiButton>
+        </DialogActions>
+      </Dialog>     
+    </Container>
   )
 }
 
