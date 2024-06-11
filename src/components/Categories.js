@@ -39,7 +39,7 @@ const CategoryWrapper = styled.div`
     padding: 30px;
     border-radius: 8px;
     background-color: #e5e7eb;
-    max-width: 400px; /* Limiting width to prevent overflowing */
+    max-width: 450px; /* Limiting width to prevent overflowing */
 
     &:hover {
         transform: scale(1.01);
@@ -50,7 +50,7 @@ const CategoryWrapper = styled.div`
 
 const Desc = styled.p`
     word-wrap: break-word;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 1.8;
     text-align: center;
@@ -67,7 +67,7 @@ const Button = styled(Link)`
     background-color: transparent;
     cursor: pointer;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 24px;
     text-decoration: none;
     color: #030712;
     

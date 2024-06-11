@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Annoucement from '../components/Annoucement';
 import Newsletter from '../components/Newsletter';
 import Footer from '../components/Footer';
-import { Add, Remove, PostAdd } from '@mui/icons-material';
+import { Add, Remove, PostAdd, ShoppingCartOutlined } from '@mui/icons-material';
 import { MobileDevice } from '../reponsive';
 import { useLocation } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -62,17 +62,18 @@ const InfoContainer = styled.div`
   ${MobileDevice({ padding: "10px" })}
 `
 const Title = styled.h1`
-  font-weight: 450;
-  font-size: 45px;
+  font-weight: 600;
+  font-size: 48px;
 
 `
 const Desc = styled.p`
   margin: 20px 0;
   font-size: 20px;
+  color: #374151;
 
 `
 const Price = styled.span`
-  font-weight: 400;
+  font-weight: 700;
   font-size: 40px;
 `
 const FilterContainer = styled.div`
@@ -121,32 +122,37 @@ const AddContainer = styled.div`
 const AmountContainer = styled.div`
   display: flex;
   align-items: center;
-  font-weight: 700;  
+  font-weight: 900;  
 `
 const Amount = styled.span`
-  width: 30px;
+  width: 20px;
   height: 30px;
-  border-radius: 10px;
-  border: 3px solid teal; 
+  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 5px;
+  margin: 0 4px;
   padding: 5px;
 
 `
 const Button = styled.button`
-  padding: 15px;
-  border: 2px solid teal;  
-  background-color: white;
+  padding: 14px 24px; 
+  background-color: #059669;
   border-radius: 4px;
-
+  margin: 30px 0;
+  border: none;
+  font-size: 15px;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
 
 
   &:hover{
-    background-color:#f8f8f8; 
+    background-color: #047857; 
   }
 
 `
@@ -263,7 +269,7 @@ const Product = () => {
     }
   }
 
-  // HANDLE PRODUCT TO CART ACTION 
+  // HANDLE THE ADDITION OF PRODUCT TO CART ACTION 
   const handleClick = async () => {
     if (!userId) {
       handleDialogOpen();
@@ -305,12 +311,14 @@ const Product = () => {
       <Navbar />
       <Annoucement />
       <Wrapper $isProgressing={findIsLoading ? "true" : undefined} $isError={findError ? "true" : undefined}>
-        {findIsLoading ? (
-          <LoadingContainer>
-            <CircularProgress  style={{ color: '#6b7280', marginBottom: "14px" }} size={40}  />
-            <Typography variant="h6" color="#9ca3af" style={{  marginLeft: "8px" }} >Loading...</Typography>
-          </LoadingContainer>
-          ) : findError ? (
+        {findIsLoading ?
+         (  
+            <LoadingContainer>
+              <CircularProgress  style={{ color: '#6b7280', marginBottom: "14px" }} size={40}  />
+              <Typography variant="h6" color="#9ca3af" style={{  marginLeft: "8px" }} >Loading...</Typography>
+            </LoadingContainer>
+          ) : findError ? 
+          (
             <NoDataContainer>
               <PostAdd style={{ fontSize: 100, marginBottom: "10px", color: "#9ca3af" }} />
               <Typography variant="h5" color="#9ca3af">{findError}</Typography>
@@ -342,11 +350,11 @@ const Product = () => {
               </FilterContainer>
               <AddContainer>
                 <AmountContainer>
-                  <Add onClick={() => handleQuantity("add")} />
+                  <Add onClick={() => handleQuantity("add")} style={{  background: 'linear-gradient(to right, #34d399, #14b8a6, #047857)', boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px', fontSize: '18px', borderRadius: '4px', padding: '8px 6px', color: 'white' }} />
                   <Amount>{quantity}</Amount>
-                  <Remove onClick={() => handleQuantity("sub")} />
+                  <Remove onClick={() => handleQuantity("sub")} style={{ background: 'linear-gradient(to right, #34d399, #14b8a6, #047857)',  boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',  fontSize: '18px',  borderRadius: '4px', padding: '8px 6px', color: 'white' }} /> 
                 </AmountContainer>
-                <Button onClick={handleClick}>ADD TO CART</Button>
+                <Button onClick={handleClick}><ShoppingCartOutlined style={{ fontSize: "18px", color: "#facc15", marginRight: "3px"}} />ADD TO CART</Button>
               </AddContainer>
             </InfoContainer>
           </> 
