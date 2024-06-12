@@ -70,7 +70,7 @@ const Product = styled.div`
   justify-content: space-between;
   border-radius: 6px;
   padding: 20px;
-  margin: 12px 0;
+  margin-bottom: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   ${MobileDevice({ flexDirection: "column" })}
 `
@@ -85,8 +85,8 @@ const DeleteIcon = styled.div`
   cursor: pointer;
   
   svg {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
   }
 `
 const ProductDetail = styled.div`
@@ -95,6 +95,7 @@ const ProductDetail = styled.div`
 `
 const Image = styled.img`
   width: 200px;
+  object-fit: cover;
 `
 const Details = styled.div`
   padding: 20px;
@@ -102,7 +103,9 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: space-around;
 `
-const ProductName = styled.span``
+const ProductName = styled.span`
+  
+`
 const ProductId = styled.span``
 const ProductColor = styled.div`
   width: 20px;
@@ -136,7 +139,7 @@ const ProductAmount = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 5px;
-  padding: 4px;
+  padding: 4px 3px;
   ${MobileDevice({ margin: "5px 15px" })}
 `
 const ProductPrice = styled.div`
@@ -168,7 +171,7 @@ const SummaryItemPrice = styled.span``
 const CheckOutButton = styled.button`
   width: 100%;
   margin-top: 28px;
-  padding: 10px;
+  padding: 10px 0;
   background-color: black;
   color: white;
   border: none;
@@ -299,7 +302,7 @@ const Cart = () => {
                     <Details>
                       <ProductName><b>Product: </b>{product.title}</ProductName>
                       <ProductId><b>ID: </b>{product._id}</ProductId>
-                      <ProductColor color={product.color} />
+                      <ProductColor color={product?.color} />
                       <ProductSize><b>Size: </b>{product.size}</ProductSize>
                     </Details>
                   </ProductDetail>
@@ -312,7 +315,7 @@ const Cart = () => {
                     <ProductPrice>₦{product.price * product.quantity}</ProductPrice>
                   </PriceDetail>
                   <DeleteIcon>
-                    <HighlightOff onClick={() => handleClickOpen(product)} />
+                    <HighlightOff style={{ color: '#1f2937'}} onClick={() => handleClickOpen(product)} />
                   </DeleteIcon>
                 </Product>
               ))

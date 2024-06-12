@@ -19,6 +19,7 @@ export const useLogin = () => {
     const login = async (dispatch, user) => {
         dispatch(loginStart());
         setIsLoading(true);
+        setError(null)
     
         try {
             const response = await userRequest.post("/auth/login", user);
