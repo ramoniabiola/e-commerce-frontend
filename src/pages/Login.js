@@ -65,7 +65,7 @@ const Input = styled.input`
     }
 
     &:focus {
-        border: 3px solid #10b981;
+        border: 2px solid #10b981;
 
     }
 `
@@ -73,16 +73,17 @@ const Button = styled.button`
     width: 97%;
     border: none;
     padding: 20px 20px;
-    background-color: #047857;
+    background: linear-gradient(to right, #10b981, #047857);
     color: white;
     cursor: pointer;
     margin: 15px 0;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 20px;
     font-weight: 700;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     &:hover{
-        background-color: #065f46;
+        background: linear-gradient(to right, #059669, #065f46);
     }
 
 `
@@ -134,7 +135,7 @@ const Login = () => {
         <Container>
             <Wrapper>
                 <Title>Welcome!</Title>
-                <Desc>Type your username and  password to log in to your <b>Luxeli</b> account.</Desc>
+                <Desc>Type your username and  password to log in to your <b>luxeli</b> account.</Desc>
                 <Form>
                     <Input
                         placeholder="username" 
@@ -148,7 +149,7 @@ const Login = () => {
                     <Button onClick={handleClick} disabled={isLoading}>
                         {isLoading ? <CircularProgress size={24} style={{ color: 'white'}} /> : "LOGIN"}
                     </Button>
-                    {error && <Error>{error}</Error>} {/* Display the error if it exists */}
+                    {error && <Error>{error}</Error>} 
                     <RegLink>Forgot password ?</RegLink>
                     <RegLink to="/register">CREATE A NEW ACCOUNT</RegLink>
                 </Form>

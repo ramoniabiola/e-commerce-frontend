@@ -15,10 +15,6 @@ import { Alert, CircularProgress, Dialog, DialogActions, DialogContent,
 } from '@mui/material';
 
 
-
-
-
-
 const Container = styled.div`
 
 `
@@ -350,9 +346,9 @@ const Product = () => {
               </FilterContainer>
               <AddContainer>
                 <AmountContainer>
-                  <Add onClick={() => handleQuantity("add")} style={{  background: 'linear-gradient(to right, #34d399, #14b8a6, #047857)', boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px', fontSize: '18px', borderRadius: '4px', padding: '8px 6px', color: 'white' }} />
+                  <Add onClick={() => handleQuantity("add")} style={{  background: 'linear-gradient(to right, #34d399, #047857)', boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px', fontSize: '18px', borderRadius: '4px', padding: '8px 6px', color: 'white' }} />
                   <Amount>{quantity}</Amount>
-                  <Remove onClick={() => handleQuantity("sub")} style={{ background: 'linear-gradient(to right, #34d399, #14b8a6, #047857)',  boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',  fontSize: '18px',  borderRadius: '4px', padding: '8px 6px', color: 'white' }} /> 
+                  <Remove onClick={() => handleQuantity("sub")} style={{ background: 'linear-gradient(to right, #34d399, #047857)',  boxShadow: 'rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px',  fontSize: '18px',  borderRadius: '4px', padding: '8px 6px', color: 'white' }} /> 
                 </AmountContainer>
                 <Button onClick={handleClick}><ShoppingCartOutlined style={{ fontSize: "18px", color: "#facc15", marginRight: "3px"}} />ADD TO CART</Button>
               </AddContainer>

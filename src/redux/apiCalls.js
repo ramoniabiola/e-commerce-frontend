@@ -38,7 +38,7 @@ export const useLogin = () => {
             }
         } catch (error) {
             // If there's an error, set the error state to display 
-            setError(error.response?.data?.error || error.message); 
+            setError('Something went wrong...'); 
             setIsLoading(false);
             dispatch(loginFailure(error.response?.data?.error || error.message))
         }      
