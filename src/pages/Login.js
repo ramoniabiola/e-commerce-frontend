@@ -56,6 +56,7 @@ const Input = styled.input`
     padding: 18px;
     font-size: 24px;
     font-weight: 600;
+    color: #09090b;
     border: 2px solid gray;
     outline: none;
     border-radius: 6px;
@@ -90,7 +91,7 @@ const Button = styled.button`
 const RegLink = styled(Link)`
     margin: 10px 0;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: underline; 
     cursor: pointer;
     color: black;

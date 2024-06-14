@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useAddUser } from '../redux/apiCalls';
 import { Alert, CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://i.pinimg.com/originals/64/2e/4c/642e4ca2d13ac7081fa1ad81093c4e11.jpg");
-    background-size: cover;
+    height: 100vh; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,15 +17,24 @@ const Container = styled.div`
 const Wrapper = styled.div`
     width: 40%;
     padding: 20px;
-    background-color: transparent;
     ${MobileDevice({ width: "75%" })}
 `
 const Title = styled.h1`
-    font-size: 32px;
-    font-weight: 500;
-    color: white;
+    font-size: 34px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    text-align: center;
+    color: #0c0a09;
 
 
+`
+
+const Desc = styled.div`
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    text-align: center;
+    
 `
 const Form = styled.form`
     display: flex;
@@ -41,61 +49,68 @@ const Input = styled.input`
     padding: 16px;
     padding: 18px;
     font-size: 20px;
+    font-weight: 600;
     outline: none;
-    border-radius: 4px;
+    border-radius: 6px;
+    border: 3px solid #d1d5db;
 
-    ::placeholder {
-        color: red;
-    }   
+    &:hover {
+      border: 3px solid gray;
+    }
+
+    &:focus {
+      border: 3px solid #10b981;
+    }
 `
 const Agreement = styled.span`
-    font-size: 16px;
+    font-size: 18px;
     margin: 20px 0;
-    color: white;
+    color: #4b5563;
 
 `
 const Button = styled.button`   
     width: 100%;
     border: none;
     padding: 16px 20px;
-    background-color: rgb(220 38 38);
+    background: linear-gradient(to right, #10b981, #047857);
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     border-radius: 4px;
-    font-weight: 600;
+    font-weight: 700;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
     &:hover{
-        background-color: rgb(185 28 28);
+        background: linear-gradient(to right, #059669, #065f46);
     }
 `;
 
-
-const IsLoadingContainer = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(13, 13, 13, 0.5); 
+const LoginContainer = styled.div`
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin: 18px 0;
+`;
+
+const LoginTitle = styled.h2`
+    font-size: 24px;
+    font-weight: 500;
+    color: #1f2937;
+`
+const LogLink = styled(Link)`
+    margin-left: 6px;
+    font-size: 20px;
+    font-weight: 900;
+    text-decoration: none; 
+    cursor: pointer;
+    color: #111827;
+
+    &:hover {
+        text-decoration: underline;
+        color: #065f46; 
+    }
+   
 `
 
-const IsLoadingCircle = styled.div`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-     
- svg {
-    width: 35px; 
-    height: 35px;
-    color: #f0f3f7; 
- }
-`
 
 const Register = () => {
     const [inputs, setInputs] = useState({
@@ -143,15 +158,9 @@ const Register = () => {
 
   return (
     <Container>
-        {isLoading && (
-        <IsLoadingContainer>
-            <IsLoadingCircle>
-                <CircularProgress />
-            </IsLoadingCircle>
-        </IsLoadingContainer>
-        )}
         <Wrapper>
-            <Title>CREATE AN ACCOUNT</Title>
+            <Title>Welcome!</Title>
+            <Desc>Dont't have a luxeli Account? kindly create one below</Desc>
             <Form>
                 <Input name="firstname" placeholder="firstname" onChange={handleChange} />
                 <Input name="lastname" placeholder="lastname" onChange={handleChange} />
@@ -163,7 +172,13 @@ const Register = () => {
                     By creating an account, I consent to the processing of my personal data
                     in accordance with the <b>PRIVACY POLICY.</b>
                 </Agreement>
-                <Button onClick={handleClick}>CREATE</Button>
+                <Button onClick={handleClick}>
+                    {isLoading ? <CircularProgress size={24} style={{ color: 'white'}} /> : "CREATE"}    
+                </Button>
+                <LoginContainer>
+                    <LoginTitle>Already have an account?</LoginTitle>
+                    <LogLink to="/login">LOGIN HERE</LogLink>
+                </LoginContainer>
             </Form>
         </Wrapper>
         {success && (
