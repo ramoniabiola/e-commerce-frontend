@@ -98,6 +98,7 @@ const InfoContainer = styled.div`
     right: 1;
     color: #fff;
     z-index: 1;
+    max-width: 990px; 
     animation: ${scrollReveal} 1s ease forwards;
 `;
 
