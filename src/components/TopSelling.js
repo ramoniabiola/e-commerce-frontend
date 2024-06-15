@@ -4,18 +4,15 @@ import { KeyboardDoubleArrowRight, Star, StarHalf, StarOutline } from '@mui/icon
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
-    width: 100%;
-    flex: 1;
-    margin: 5px 0;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
 `;
 
 
 const Wrapper = styled.div`
-    width: 335px;
-    height: 500px;
+    width: 328px;
+    min-height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,6 +22,7 @@ const Wrapper = styled.div`
     margin-bottom: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: transform 0.1s ease;
+    margin: 0;
 
     &:hover {
         transform: scale(1.04);

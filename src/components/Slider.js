@@ -54,11 +54,12 @@ const Wrapper = styled.div`
 `;
 
 const Slide = styled.div`
-    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    position: relative;
 
 
 `;
@@ -86,16 +87,17 @@ const Image = styled.img`
 `;
 
 const InfoContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     position: absolute;
-    top: 34%;
-    left: 23%;
     transform: translate(-50%, -50%);
-    text-align: center;
+    top: 1;
+    left: 1;
+    right: 1;
     color: #fff;
     z-index: 1;
-    max-width: 990px; 
-    width: 80%; 
-    margin-right: 50px;
     animation: ${scrollReveal} 1s ease forwards;
 `;
 
@@ -182,3 +184,4 @@ const Slider = () => {
 };
 
 export default Slider;
+ 

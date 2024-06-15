@@ -15,7 +15,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   overflow: hidden;
-   margin-top: 8px;
+  margin-top: 8px;
 `;
 
 const Title = styled.h1`
@@ -34,7 +34,10 @@ const ProductContainer = styled.div`
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 2px 0;
 `;
 
 const NoDataContainer = styled.div`
