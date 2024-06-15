@@ -37,7 +37,6 @@ const ProductContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 20px;
-  margin: 2px 0;
 `;
 
 const NoDataContainer = styled.div`
