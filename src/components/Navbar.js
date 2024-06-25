@@ -204,15 +204,15 @@ const Navbar = () => {
             onClose={handleClose}
             aria-describedby="alert-dialog-slide-description"
             >
-            <DialogTitle style={{color: "#64748b", fontSize: "18px"}}>{"EXIT CONFIRMATION"}</DialogTitle>
+            <DialogTitle style={{color: "#0d9488", fontSize: "18px"}}>{"EXIT CONFIRMATION"}</DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-slide-description"  style={{color: "#1e293b"}}>
                     {"Are you sure you want to Log out?"}
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>CANCEL</Button>
-              <Button  onClick={handleClick}>LOG OUT</Button>
+              <Button onClick={handleClose} style={{color: "#9ca3af"}}>CANCEL</Button>
+              <Button  onClick={handleClick} style={{color: "#2dd4bf"}}>LOG OUT</Button>
             </DialogActions>
         </Dialog>
         <Wrapper>

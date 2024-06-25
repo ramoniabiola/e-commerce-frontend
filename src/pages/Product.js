@@ -382,20 +382,20 @@ const Product = () => {
         onClose={handleDialogClose}
         aria-describedby="alert-dialog-slide-description"
         >
-        <DialogTitle  style={{color: "#64748b", fontSize: "18px"}}>{"Not Logged In?"}</DialogTitle>
+        <DialogTitle  style={{color: "#0f766e", fontSize: "18px"}}>{"Not Logged In?"}</DialogTitle>
         <DialogContent>
             <DialogContentText id="alert-dialog-slide-description" style={{color: "#1e293b"}}>
                 {" You need to be logged in to add products to the cart. Please log in if you already have an account or register if you don't have one."}
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <MuiButton onClick={() => setOpen(false)} color="secondary">
+          <MuiButton onClick={() => setOpen(false)}  style={{color: "#9ca3af"}}>
             CANCEL
           </MuiButton>
-          <MuiButton href="/login" color="primary">
+          <MuiButton href="/login" style={{color: "#0d9488"}}>
             LOGIN
           </MuiButton>
-          <MuiButton href="/register"color="primary" autoFocus>
+          <MuiButton href="/register" style={{color: "#0d9488"}} autoFocus>
             REGISTER
           </MuiButton>
         </DialogActions>

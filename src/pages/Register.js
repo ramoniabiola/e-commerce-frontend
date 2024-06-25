@@ -14,11 +14,13 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
 `
+
 const Wrapper = styled.div`
     width: 40%;
     padding: 20px;
     ${MobileDevice({ width: "75%" })}
 `
+
 const Title = styled.h1`
     font-size: 34px;
     font-weight: 800;
@@ -36,6 +38,7 @@ const Desc = styled.div`
     text-align: center;
     
 `
+
 const Form = styled.form`
     display: flex;
     flex-wrap: wrap;
@@ -156,48 +159,48 @@ const Register = () => {
 
     
 
-  return (
-    <Container>
-        <Wrapper>
-            <Title>Welcome!</Title>
-            <Desc>Dont't have a luxeli Account? kindly create one below</Desc>
-            <Form>
-                <Input name="firstname" placeholder="firstname" onChange={handleChange} />
-                <Input name="lastname" placeholder="lastname" onChange={handleChange} />
-                <Input name="username" placeholder="username"  onChange={handleChange}/>
-                <Input name="email" type="email" placeholder="email" onChange={handleChange}/>
-                <Input name="password" type="password" placeholder="password" onChange={handleChange}/>
-                <Input name="job"  placeholder="job description" onChange={handleChange}/>
-                <Agreement>
-                    By creating an account, I consent to the processing of my personal data
-                    in accordance with the <b>PRIVACY POLICY.</b>
-                </Agreement>
-                <Button onClick={handleClick}>
-                    {isLoading ? <CircularProgress size={24} style={{ color: 'white'}} /> : "CREATE"}    
-                </Button>
-                <LoginContainer>
-                    <LoginTitle>Already have an account?</LoginTitle>
-                    <LogLink to="/login">LOGIN HERE</LogLink>
-                </LoginContainer>
-            </Form>
-        </Wrapper>
-        {success && (
-            <Alert severity="success" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-                Registeration process succesfull...
-            </Alert>
-        )}
-        {error && (
-            <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-                {error}
-            </Alert>
-        )}
-        {errorMessage && (
-            <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
-                {errorMessage}
-            </Alert>
-        )}
-    </Container>
-  )
+    return (
+        <Container>
+            <Wrapper>
+                <Title>Welcome!</Title>
+                <Desc>Dont't have a luxeli Account? kindly create one below</Desc>
+                <Form>
+                    <Input name="firstname" placeholder="firstname" onChange={handleChange} />
+                    <Input name="lastname" placeholder="lastname" onChange={handleChange} />
+                    <Input name="username" placeholder="username"  onChange={handleChange}/>
+                    <Input name="email" type="email" placeholder="email" onChange={handleChange}/>
+                    <Input name="password" type="password" placeholder="password" onChange={handleChange}/>
+                    <Input name="job"  placeholder="job description" onChange={handleChange}/>
+                    <Agreement>
+                        By creating an account, I consent to the processing of my personal data
+                        in accordance with the <b>PRIVACY POLICY.</b>
+                    </Agreement>
+                    <Button onClick={handleClick}>
+                        {isLoading ? <CircularProgress size={24} style={{ color: 'white'}} /> : "CREATE"}    
+                    </Button>
+                    <LoginContainer>
+                        <LoginTitle>Already have an account?</LoginTitle>
+                        <LogLink to="/login">LOGIN HERE</LogLink>
+                    </LoginContainer>
+                </Form>
+            </Wrapper>
+            {success && (
+                <Alert severity="success" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+                    Registeration process succesfull...
+                </Alert>
+            )}
+            {error && (
+                <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+                    {error}
+                </Alert>
+            )}
+            {errorMessage && (
+                <Alert severity="error" sx={{ position: 'fixed', bottom: 40, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+                    {errorMessage}
+                </Alert>
+            )}
+        </Container>
+    )
 }
 
 export default Register;
