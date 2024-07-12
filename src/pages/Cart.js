@@ -257,15 +257,15 @@ const Cart = () => {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
-        <DialogTitle style={{color: "#64748b", fontSize: "18px"}}>{"REMOVAL CONFIRMATION"}</DialogTitle>
+        <DialogTitle  style={{color: "#0d9488", fontSize: "18px"}}>{"REMOVAL CONFIRMATION"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description"  style={{color: "#1e293b"}}> 
             {selectedCartItem && `Are you sure you want to remove "${selectedCartItem.title}" from your cart?`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>CANCEL</Button>
-          <Button onClick={handleDelete}>REMOVE ITEM</Button>
+          <Button onClick={handleClose}  style={{color: "#9ca3af"}}>CANCEL</Button>
+          <Button onClick={handleDelete} style={{color: "#2dd4bf"}}>REMOVE ITEM</Button>
         </DialogActions>
       </Dialog>
       {isLoading && (
