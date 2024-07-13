@@ -136,6 +136,7 @@ const Login = () => {
 
     const handleClick = async (e) => {
         e.preventDefault();
+
         await login(dispatch, { username, password });
     };
 
