@@ -41,20 +41,20 @@ const Desc = styled.div`
 const Form = styled.form`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    width: 100%;
+    margin-top: 10px;
+    
 `;
 
 const InputContainer = styled.div`
-    width: 80%;
+    padding: 16px;
+    width: 520px;
     display: flex;
     flex-direction: column;
     align-items: center;
 `;
 
 const Input = styled.input`
-    width: 90%;
+    width: 92%;
     margin: 14px 0;
     padding: 18px;
     font-size: 24px;
@@ -74,7 +74,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-    width: 98%;
+    width: 100%;
     border: none;
     padding: 20px;
     background: linear-gradient(to right, #10b981, #047857);
@@ -124,8 +124,8 @@ const Error = styled.h2`
     width: 100%;
     font-weight: 600;
     font-size: 20px;
-    margin: 10px 0;
-    color: red;
+    margin: 4px 0;
+    color: #dc2626;
 `;
 
 const Login = () => {
@@ -156,7 +156,7 @@ const Login = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                         <Button onClick={handleClick} disabled={isLoading}>
-                            {isLoading ? <CircularProgress size={24} style={{ color: 'white' }} /> : "LOGIN"}
+                            {isLoading ? <CircularProgress size={22} style={{ color: 'white' }} /> : "LOGIN"}
                         </Button>
                         {error && <Error>{error}</Error>}
                     </InputContainer>

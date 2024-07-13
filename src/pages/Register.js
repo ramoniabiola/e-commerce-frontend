@@ -95,13 +95,13 @@ const LoginContainer = styled.div`
 `;
 
 const LoginTitle = styled.h2`
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     color: #1f2937;
 `
 const LogLink = styled(Link)`
     margin-left: 6px;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 900;
     text-decoration: none; 
     cursor: pointer;
