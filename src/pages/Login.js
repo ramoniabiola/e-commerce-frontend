@@ -105,7 +105,7 @@ const RegLink = styled(Link)`
     text-decoration: none;
     cursor: pointer;
     color: #4b5563;
-    margin: 0 16px;
+    margin: 0 14px;
 
     &:hover {
         color: #047857;
@@ -115,9 +115,9 @@ const RegLink = styled(Link)`
 
 const StyledHr = styled.hr`
     border: none;
-    height: 24px;
+    height: 22px;
     background-color: #4b5563;
-    width: 3px;
+    width: 2px;
 `;
 
 const Error = styled.h2`
