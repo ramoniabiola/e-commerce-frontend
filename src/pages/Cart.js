@@ -65,11 +65,12 @@ const Info = styled.div`
 `
 
 const Product = styled.div`
+  height: 220px;
   position: relative;
   display: flex;
   justify-content: space-between;
   border-radius: 6px;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 12px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   ${MobileDevice({ flexDirection: "column" })}
